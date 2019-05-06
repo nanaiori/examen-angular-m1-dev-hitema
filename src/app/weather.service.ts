@@ -13,7 +13,7 @@ interface CityWeather {
   windSpeed?: number;
 }
 
-interface DailyForeCast {
+export interface DailyForeCast {
   name: string;
   condition?: string;
   temp: number;
