@@ -19,7 +19,7 @@
       <div class="header-content__wrapper">
         <div class="today-weather__container">
           <div class="temp-state__container">
-            <span class="temperature__text">{{ temp }}°</span>
+            <span class="temperature__text">{{ temp | number:'1.0-1':'fr-FR'}}°</span>
             <span class="weather-state__text">{{ state }}</span>
           </div>
           <div class="hum-wind__container">
