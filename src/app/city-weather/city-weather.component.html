@@ -1,6 +1,6 @@
-<section class="weather__card">
+<section class="weather__card" routerLink="/details/{{name}}">
   <span class="city-name__text">
-    {{ name }}
+    <input (click)="$event.stopPropagation();" (keyup)="onChange($event)"  placeholder="City Name" class="ng-pristine ng-valid ng-touched">
   </span>
   <div class="weather-icon__container">
 
