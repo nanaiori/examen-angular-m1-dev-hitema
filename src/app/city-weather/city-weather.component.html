@@ -1,19 +1,28 @@
-<section class="weather__card" routerLink="/details/{{name}}">
+<section class="weather__card" (click)="goToDetail(name)">
   <span class="city-name__text">
-    <input (click)="$event.stopPropagation();" (keyup)="onChange($event)"  placeholder="City Name" class="ng-pristine ng-valid ng-touched">
+     <input (click)="$event.stopPropagation();" [(ngModel)]="name" (ngModelChange)="changeName(name)"  >
   </span>
-  <div class="weather-icon__container">
-
-    <i  *ngIf="condition === 'rain'" class="fas fa-cloud-rain fa-10x" ></i>
-    <i *ngIf="condition === 'sun'" class="fas fa-sun fa-10x" ></i>
-    <i *ngIf="condition === 'clouds'" class="fas fa-cloud fa-10x" ></i>
-    <i *ngIf="condition === 'storm'" class="fas fa-poo-storm fa-10x" ></i>
-    <i *ngIf="condition === 'snow'" class="fas fa-snowflake fa-10x"  ></i>
-
-    <i class="fas fa-10x"></i>
+  <!-- Condition météo en image -->
+  <div class="weather-icon__container " [ngSwitch]="condition">
+    <div *ngSwitchCase="'sun'">         
+      <i class="fas fa-10x fa-sun"></i>
+    </div>
+    <div *ngSwitchCase="'rain'">        
+      <i class="fas fa-10x fa-cloud-showers-heavy"></i>
+    </div>
+    <div *ngSwitchCase="'clouds'">      
+      <i class="fas fa-10x fa-cloud"></i>
+    </div>
+    <div *ngSwitchCase="'storm'">       
+      <i class="fas fa-10x fa-bolt"></i>
+    </div>
+    <div *ngSwitchCase="'snow'">        
+      <i class="fas fa-10x fa-snowflake"></i>
+    </div>
   </div>
+  <!-- Temperature Min Max sans le million de décimal -->
   <div class="temperature-text__container">
-    <span class="temperature__text">{{ currentTemp | number:'1.0-1':'fr-FR'}}</span>
+    <span class="temperature__text">{{ currentTemp | number: '':'fr-FR' }}</span>
     <span class="temperature-metric__text">°</span>
     <span class="weather-condition__text">{{ condition }}</span>
   </div>
@@ -22,14 +31,14 @@
       <svg class="min-arrow__icon" viewBox="188.5 807 21 21">
         <path fill="green" d="M209.5 817.5h-21L199 828z" data-name="Min Arrow"/>
       </svg>
-      <span class="min-temperature__text">{{ minTemp| number: '1.0-1':'fr-FR' }}</span>
+      <span class="min-temperature__text">{{ minTemp | number: '':'fr-FR' }}</span>
       <span class="min__text">Min</span>
     </div>
     <div class="max__container">
       <svg class="max-arrow__icon" viewBox="449.5 820 21 21">
         <path fill="red" d="M449.5 830.5h21L460 820z" data-name="Max Arrow"/>
       </svg>
-      <span class="max-temperature__text">{{ maxTemp| number: '1.0-1':'fr-FR' }}</span>
+      <span class="max-temperature__text">{{ maxTemp | number: '':'fr-FR' }}</span>
       <span class="max__text">Max</span>
     </div>
   </section>
